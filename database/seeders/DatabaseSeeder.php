@@ -4,18 +4,22 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'admin@opizza.fr'],
+            ['email' => 'directeur.general@login.com'],
             [
-                'name' => 'Admin O\'pizza',
-                'password' => Hash::make('password'),
+                'name' => 'Directeur Général',
+                'role' => 'superadmin',
+                'password' => 'password',
             ]
         );
+
+        // Supprime l'ancien compte superadmin s'il existe
+        User::where('email', 'zerraguiabdelilah@login.com')->delete();
+
     }
 }

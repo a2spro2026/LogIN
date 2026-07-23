@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', "Règlement — O'pizza")
+@section('title', "Règlement — LogIN")
 
 @section('content')
 <div class="space-y-6">

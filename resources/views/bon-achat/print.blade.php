@@ -55,7 +55,7 @@
 <body>
     <div class="sheet">
         <div class="head">
-            <div class="brand">O'pizza<small>RESTAURANT</small></div>
+            <div class="brand">LogIN<small>LOCATION IMMOBILIÈRE</small></div>
             <div class="doc-title">
                 <h1>Bon d'Achat — {{ $bon->ref_bn }}</h1>
                 <span>Imprimé le {{ now()->format('d/m/Y à H:i') }}</span>
@@ -105,7 +105,7 @@
             </tr>
         </table>
 
-        <div class="footer">Document généré automatiquement — Restaurant O'pizza</div>
+        <div class="footer">Document généré automatiquement — LogIN</div>
 
         <div class="actions">
             <a href="#" class="btn" onclick="window.print(); return false;">Imprimer</a>
