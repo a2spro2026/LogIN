@@ -77,13 +77,56 @@
     animation: login-ken-burns 18s ease-out forwards;
 }
 
+/* Cadre vidéo hero — hauteur garantie (indépendant du purge Tailwind) */
+.login-promo-video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 200px;
+    background: rgba(11, 31, 58, 0.85);
+    isolation: isolate;
+    z-index: 2;
+    box-shadow:
+        0 4px 6px -1px rgba(11, 31, 58, 0.25),
+        0 22px 50px -12px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(201, 162, 39, 0.35),
+        0 0 40px -8px rgba(201, 162, 39, 0.35);
+}
+@media (max-width: 640px) {
+    .login-promo-video {
+        min-height: 210px;
+        max-height: none;
+    }
+}
+.login-promo-video > video,
+.login-promo-video > iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    object-fit: cover;
+    pointer-events: auto;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+.login-promo-video > .login-promo-placeholder {
+    position: absolute;
+    inset: 0;
+}
+
 .login-search-enter {
     animation: login-fade-up 1s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
+
+.login-search-bar {
+    animation: login-fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
 
 @media (prefers-reduced-motion: reduce) {
     .login-anim-up,
     .login-search-enter,
+    .login-search-bar,
     .login-hero-img {
         animation: none !important;
         opacity: 1 !important;
@@ -95,9 +138,11 @@
    (sinon position:fixed se casse et le texte du panneau "ghost") */
 html.admin-modal-open .login-hero-img,
 html.admin-modal-open .login-anim-up,
-html.admin-modal-open .login-search-enter {
+html.admin-modal-open .login-search-enter,
+html.admin-modal-open .login-search-bar {
     animation: none !important;
     transform: none !important;
+    opacity: 1 !important;
 }
 
 .admin-login-panel {

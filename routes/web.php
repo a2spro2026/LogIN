@@ -5,12 +5,16 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BonAchatController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FournisseurController;
+use App\Http\Controllers\HabillementController;
 use App\Http\Controllers\PartnerRegistrationController;
 use App\Http\Controllers\ReglementController;
+use App\Models\Habillement;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', [
+        'habillement' => Habillement::current(),
+    ]);
 })->name('home');
 
 Route::post('/inscription', [PartnerRegistrationController::class, 'store'])->name('inscription.store');
@@ -47,6 +51,9 @@ Route::middleware(['auth', 'superadmin'])->group(function () {
     Route::put('/dashboard/fournisseur-reglement/{reglement}', [ReglementController::class, 'update'])->name('reglement.update');
     Route::get('/dashboard/fournisseur-reglement/{reglement}/print', [ReglementController::class, 'print'])->name('reglement.print');
     Route::delete('/dashboard/fournisseur-reglement/{reglement}', [ReglementController::class, 'destroy'])->name('reglement.destroy');
+
+    Route::get('/dashboard/configuration-habillement', [HabillementController::class, 'edit'])->name('configuration.habillement');
+    Route::put('/dashboard/configuration-habillement', [HabillementController::class, 'update'])->name('configuration.habillement.update');
 
     Route::get('/dashboard/{section}', [DashboardController::class, 'section'])->name('dashboard.section');
 });
